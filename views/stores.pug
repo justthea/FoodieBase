@@ -1,0 +1,17 @@
+extends layout 
+
+include mixins/_storeCard
+include mixins/_pagination
+
+block content 
+  //- an inner div
+  .inner 
+    //- or h2 = title
+    h2= title
+    //- use mixin
+    //- need to be careful = cannot have any space before it  
+    //- pre= h.dump(stores)
+    .stores  
+      each store in stores 
+        +storeCard(store)
+    +pagination(page, pages, count)

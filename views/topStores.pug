@@ -1,0 +1,25 @@
+extends layout 
+
+block content 
+  .inner 
+    h2 Top #{stores.length} Stores
+    table.table 
+      thead 
+        td photo 
+        td ranking
+        td name 
+        td reviews 
+        td Average Rating
+      each store, i in stores 
+        tr 
+          td 
+            a(href=`/store/${store.slug}`)
+              //- below are indented so the href can show on the pic
+              img(width=200 src=`/uploads/${store.photo || 'store.png'}` alt=store.name)
+          td #{i + 1}
+          //- do td: so we dont have to indent the content in a separate line
+          td: a(href=`/store/${store.slug}`)= store.name
+          td= store.reviews.length
+          //- 四舍五入，先乘10再除所以可以保留小数点后一位
+          td #{Math.round(store.averageRating * 10) /10} / 5
+    

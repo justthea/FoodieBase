@@ -1,0 +1,14 @@
+extends layout 
+
+include mixins/_storeForm
+
+block content 
+  //- an inner div
+  .inner 
+    //- or h2 = title
+    //- below is quick way to show store
+    //- pre= h.dump(store)
+    h2= title
+    //- use mixin
+    //- need to pass store in below
+    +storeForm(store) 

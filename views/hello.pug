@@ -1,0 +1,22 @@
+//- need to pick indentation practice, if 2 spaces, always 2 spaces 
+//- below is equal to div.wrapper, div is assumed
+//- .wrapper
+  //- class = hello
+  //- when wiritng text use#{} for varibles
+  //- ideally make all varibles in js file, but if needed, can do as below
+  - const upDog = dog.toUpperCase()
+  p.hello Hello my dog name is #{upDog}
+  //- id = yo
+  //- when writing alt in img, use ``like js for varibles
+  img.dog(src = "dog.jpg" alt=`Dog ${dog}`)
+//- h2 
+  | Hello
+  em How are you?
+  //- to resue templates
+
+extends layout 
+
+block content
+  //- below will replace block content 
+  //- below is using moment js library, endof and fromnow are moment syntax
+  h2 Sale ends in #{h.moment().endOf('day').fromNow()}

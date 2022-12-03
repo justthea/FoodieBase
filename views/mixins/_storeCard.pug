@@ -1,0 +1,37 @@
+mixin storeCard(store={})
+  .store  
+    .store__hero 
+      .store__actions
+        //- show hearts if logged in 
+        if user 
+          .store__action.store__action--heart 
+            form.heart(method='POST' action=`/api/stores/${store._id}/heart`)
+              //- make heart icon turn red
+              - const heartStrings = user.hearts.map(obj => obj.toString())
+              - const heartClass = heartStrings.includes(store._id.toString())? 'heart__button--hearted' : ''
+              //- pre= h.dump(heartStrings)
+              //- pre= h.dump(store._id)
+              button.heart__button(type='submit' name='heart' class=heartClass)
+                != h.icon('heart')
+        //- can only see the edit button if one is the owner of store
+        //- we dont need to populate the author, just need the id, now store.author is just an ID
+        //- if user is the edge case that if one have not signed in, he cannot edit anything
+        //- other permission methods: make diff levels, like 10 -Admin, 20-Editor
+        //- or we can also create additional confirmOwner func in storeController
+        if user && store.author.equals(user._id)
+          //- button soon
+          .store__action.store__action--edit 
+            a(href=`/stores/${store._id}/edit`)
+              //- use the create svg icon func in helper.js
+              != h.icon('pencil')
+        if store.reviews 
+          .store__action.store__action--count 
+            != h.icon('review')
+            span= store.reviews.length
+      img(src=`/uploads/${store.photo || 'store.png'}`)
+      h2.title 
+        a(href=`/store/${store.slug}`) #{store.name}
+    .store__description
+      //- setting max 25 words limits 
+      //- cannot do ; in pug 
+      p= store.description.split(' ').slice(0,25).join(' ')
