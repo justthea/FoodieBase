@@ -1,2 +1,2 @@
 # Restaurant-Website-Yelp-Clone-
-A website created based on Yelp that allows users to create accounts, reviews on restaurants, and search restaurants. 
+A website created based on Yelp that allows users to create accounts, add reviews on restaurants, and search restaurants by category. 
